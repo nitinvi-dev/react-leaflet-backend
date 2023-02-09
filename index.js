@@ -1,8 +1,15 @@
 const express = require("express");
 const cors = require('cors');
+var bodyParser = require('body-parser')
 const axios = require('axios');
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(cors());
 
@@ -11,7 +18,6 @@ app.get('/api', async(req, res) => {
         status: "200"
     });
 });
-
 
 app.post('/api/nearbyparks', async(req, res) => {
     const { radius, lat, lng } = req.body;
@@ -38,7 +44,6 @@ app.post('/api/nearbyparks', async(req, res) => {
         data: data
     });
 })
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
