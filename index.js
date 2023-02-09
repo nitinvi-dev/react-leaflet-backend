@@ -12,6 +12,7 @@ app.get('/api', async(req, res) => {
     });
 });
 
+
 app.post('/api/nearbyparks', async(req, res) => {
     const { radius, lat, lng } = req.body;
     var config = {
@@ -37,6 +38,7 @@ app.post('/api/nearbyparks', async(req, res) => {
         data: data
     });
 })
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
